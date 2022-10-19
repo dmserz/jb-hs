@@ -1,0 +1,71 @@
+import random
+import string
+
+won = 0
+lost = 0
+
+def play():
+    word = random.choice(['python', 'java', 'swift', 'javascript'])
+    letters = dict({c: '-' for c in word})
+    attempts = [1, 1, 1, 1, 1, 1, 1, 1]
+    n = []
+    x = []
+    lowercase = list(string.ascii_lowercase)
+    for i in attempts:
+        print("\n" + "".join(letters[c] for c in word))
+        new_letter = input("Input a letter:")
+        if len(new_letter) == 1 and new_letter not in lowercase:
+            print("Please, enter a lowercase letter from the English alphabet.")
+            attempts.append(1)
+        if len(new_letter) != 1:
+            print("Please, input a single letter.")
+            attempts.append(1)
+        if new_letter in n or new_letter in x:
+            print("You've already guessed this letter.")
+            attempts.append(1)
+        if new_letter in letters and new_letter not in n:
+            letters[new_letter] = new_letter
+            attempts.append(1)
+            n.append(new_letter)
+        if new_letter not in letters and len(new_letter) == 1 and new_letter in lowercase:
+            print("That letter doesn't appear in the word")
+            x.append(new_letter)
+        check = ''.join(letters[c] for c in word)
+        if check == word:
+            print(word)
+            print("You guessed the word " + word + "!")
+            print("You survived!")
+            global won
+            won = won + 1
+            menu()
+            attempts.clear()
+    if check != word:
+        print("You lost!")
+        global lost
+        lost = lost + 1
+        menu()
+
+
+def menu():
+
+    print('Type "play" to play the game, "results" to show the scoreboard, and "exit" to quit:')
+    new_input = input()
+    global won
+    global lost
+    if new_input == 'play':
+        play()
+    elif new_input == 'exit':
+        return
+    elif new_input == 'results':
+        print('You won: ' + str(won) + ' times')
+        print('You lost: ' + str(lost) + ' times')
+        menu()
+        won = 0
+
+
+print("H A N G M A N")
+menu()
+
+
+
+
