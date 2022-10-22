@@ -1,0 +1,166 @@
+import string
+b = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+print("---------")
+print("|", b[0], b[1], b[2], "|")
+print("|", b[3], b[4], b[5], "|")
+print("|", b[6], b[7], b[8], "|")
+print("---------")
+
+M = [[b[0], b[1], b[2]], [b[3], b[4], b[5]], [b[6], b[7], b[8]]]
+
+
+def x_choice():
+    c = input()
+    d = list(c)
+
+    if d[0] not in string.digits or d[2] not in string.digits:
+        print("You should enter numbers!")
+        x_choice()
+    if int(d[0]) < 1 or int(d[2]) < 1 or int(d[0]) > 3 or int(d[2]) > 3:
+        print("Coordinates should be from 1 to 3!")
+        x_choice()
+    elif M[int(d[0]) - 1][int(d[2]) - 1] != " ":
+        print("This cell is occupied! Choose another one!")
+        x_choice()
+    elif M[int(d[0]) - 1][int(d[2]) - 1] == " ":
+        M[int(d[0]) - 1][int(d[2]) - 1] = 'X'
+        print("---------")
+        print("|", M[0][0], M[0][1], M[0][2], "|")
+        print("|", M[1][0], M[1][1], M[1][2], "|")
+        print("|", M[2][0], M[2][1], M[2][2], "|")
+        print("---------")
+    if M[0][0] + M[0][1] + M[0][2] == 'XXX':
+        print("X wins")
+        return
+    if M[1][0] + M[1][1] + M[1][2] == 'XXX':
+        print("X wins")
+        return
+    if M[2][0] + M[2][1] + M[2][2] == 'XXX':
+        print("X wins")
+        return
+    if M[0][0] + M[1][0] + M[2][0] == 'XXX':
+        print("X wins")
+        return
+    if M[0][1] + M[1][1] + M[2][1] == 'XXX':
+        print("X wins")
+        return
+    if M[0][2] + M[1][2] + M[2][2] == 'XXX':
+        print("X wins")
+        return
+    if M[0][0] + M[1][1] + M[2][2] == 'XXX':
+        print("X wins")
+        return
+    if M[0][2] + M[1][1] + M[2][0] == 'XXX':
+        print("X wins")
+        return
+    if M[0][0] + M[0][1] + M[0][2] == 'OOO':
+        print("O wins")
+        return
+    if M[1][0] + M[1][1] + M[1][2] == 'OOO':
+        print("O wins")
+        return
+    if M[2][0] + M[2][1] + M[2][2] == 'OOO':
+        print("O wins")
+        return
+    if M[0][0] + M[1][0] + M[2][0] == 'OOO':
+        print("O wins")
+        return
+    if M[0][1] + M[1][1] + M[2][1] == 'OOO':
+        print("O wins")
+        return
+    if M[0][2] + M[1][2] + M[2][2] == 'OOO':
+        print("O wins")
+        return
+    if M[0][0] + M[1][1] + M[2][2] == 'OOO':
+        print("O wins")
+        return
+    if M[0][2] + M[1][1] + M[2][0] == 'OOO':
+        print("O wins")
+        return
+    if " " not in M[0] and " " not in M[1] and " " not in M[2]:
+        print("Draw")
+        return
+
+    o_choice()
+
+
+def o_choice():
+    c = input()
+    d = list(c)
+
+    if d[0] not in string.digits or d[2] not in string.digits:
+        print("You should enter numbers!")
+        o_choice()
+    if int(d[0]) < 1 or int(d[2]) < 1 or int(d[0]) > 3 or int(d[2]) > 3:
+        print("Coordinates should be from 1 to 3!")
+        o_choice()
+    elif M[int(d[0]) - 1][int(d[2]) - 1] != " ":
+        print("This cell is occupied! Choose another one!")
+        o_choice()
+    elif M[int(d[0]) - 1][int(d[2]) - 1] == " ":
+        M[int(d[0]) - 1][int(d[2]) - 1] = 'O'
+        print("---------")
+        print("|", M[0][0], M[0][1], M[0][2], "|")
+        print("|", M[1][0], M[1][1], M[1][2], "|")
+        print("|", M[2][0], M[2][1], M[2][2], "|")
+        print("---------")
+    if M[0][0] + M[0][1] + M[0][2] == 'XXX':
+        print("X wins")
+        return
+    if M[1][0] + M[1][1] + M[1][2] == 'XXX':
+        print("X wins")
+        return
+    if M[2][0] + M[2][1] + M[2][2] == 'XXX':
+        print("X wins")
+        return
+    if M[0][0] + M[1][0] + M[2][0] == 'XXX':
+        print("X wins")
+        return
+    if M[0][1] + M[1][1] + M[2][1] == 'XXX':
+        print("X wins")
+        return
+    if M[0][2] + M[1][2] + M[2][2] == 'XXX':
+        print("X wins")
+        return
+    if M[0][0] + M[1][1] + M[2][2] == 'XXX':
+        print("X wins")
+        return
+    if M[0][2] + M[1][1] + M[2][0] == 'XXX':
+        print("X wins")
+        return
+    if M[0][0] + M[0][1] + M[0][2] == 'OOO':
+        print("O wins")
+        return
+    if M[1][0] + M[1][1] + M[1][2] == 'OOO':
+        print("O wins")
+        return
+    if M[2][0] + M[2][1] + M[2][2] == 'OOO':
+        print("O wins")
+        return
+    if M[0][0] + M[1][0] + M[2][0] == 'OOO':
+        print("O wins")
+        return
+    if M[0][1] + M[1][1] + M[2][1] == 'OOO':
+        print("O wins")
+        return
+    if M[0][2] + M[1][2] + M[2][2] == 'OOO':
+        print("O wins")
+        return
+    if M[0][0] + M[1][1] + M[2][2] == 'OOO':
+        print("O wins")
+        return
+    if M[0][2] + M[1][1] + M[2][0] == 'OOO':
+        print("O wins")
+        return
+    if " " not in M[0] and " " not in M[1] and " " not in M[2]:
+        print("Draw")
+        return
+
+
+    x_choice()
+
+
+x_choice()
+
+
+
