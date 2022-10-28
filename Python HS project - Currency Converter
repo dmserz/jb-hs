@@ -1,0 +1,30 @@
+import requests
+
+
+first_input = input().upper()
+cache = {}
+req = 'http://www.floatrates.com/daily/' + first_input + '.json'
+rate = requests.get(req).json()
+if "usd" in rate:
+    b = rate['usd']["inverseRate"]
+    cache.update({"usd": b})
+if "eur" in rate:
+    b = rate['eur']["inverseRate"]
+    cache.update({"eur": b})
+while True:
+    exchange = input()
+    if exchange == "":
+        break
+    amount = float(input())
+    print('Checking the cache...')
+    if exchange in cache:
+        print('Oh! It is in the cache!')
+        x = amount / cache[exchange]
+        print('You received', round(x, 2), exchange.upper() + '.')
+    else:
+        print('Sorry, but it is not in the cache!')
+        cache.update({exchange: rate[exchange]["inverseRate"]})
+        x = amount / cache[exchange]
+        print('You received', round(x, 2), exchange.upper() + '.')
+    if exchange in rate:
+        rate.pop(exchange)
